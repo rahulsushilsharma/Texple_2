@@ -31,7 +31,7 @@
 			var options = {
 				'title': 'Toppings I Like On My Pizza',
 				'width': 450,
-				'height': 300,
+				'height': 260,
 				colors: ['#e7c012', '#8b81e2'],
 			};
 
@@ -85,11 +85,14 @@
 		border-color: #c8c8c8;
 
 	}
-
+	.output {
+		display: flex;
+	}
 	.s1 {
-		padding-bottom: 30px;
+		padding-bottom: 15%;
 		border-bottom: 1px solid #c8c8c8;
 	}
+
 
 	.slider {
 		padding: 1px;
@@ -97,18 +100,22 @@
 	}
 
 	.slider h3 {
-		margin-left: 10%;
+		margin-left: 3%;
 		text-align: left;
 		font-family: Arial;
 		font-weight: 200;
+		color: #494949;
 	}
 	.slider h4 {
-		margin-left: 60%;
-		margin-right: 10%;
+		margin-left: auto;
+		margin-right: 10px;
+		width: 30%;
 		text-align: center;
 		background-color: #f3f3f3;
 		border: 1px solid #c8c8c8;
 		border-radius: 30px;
+		font-family: Arial;
+		color: #e7c012;
 	}
 
 	.slider input {
@@ -131,8 +138,6 @@
 		background: #8b81e2;
 		cursor: pointer;
 	}
-
-	.pie {}
 </style>
 
 <body>
@@ -143,7 +148,7 @@
 				<div class="s1">
 					<div class="output">
 						<h3>
-							Number of Mushrooms
+							Number of Mushrooms:
 						</h3>
 						<h4 id="slider1_value">
 							5
@@ -154,7 +159,7 @@
 				<div class="s2">
 					<div class="output">
 						<h3>
-							Number of Onions
+							Number of Onions:
 						</h3>
 						<h4 id="slider2_value">
 							5
