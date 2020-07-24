@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--Load the AJAX API-->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {
+			'packages': ['corechart']
+		});
+
+		// Set a callback to run when the Google Visualization API is loaded.
+		google.charts.setOnLoadCallback(drawChart);
+
+		// Callback that creates and populates a data table,
+		// instantiates the pie chart, passes in the data and
+		// draws it.
+		function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Topping');
+			data.addColumn('number', 'Slices');
+			data.addRows([
+				['Mushrooms', 3],
+				['Onions-pieces', 1],
+			]);
+
+			// Set chart options
+			var options = {
+				'title': 'Toppings I Like On My Pizza',
+				'width': 450,
+				'height': 300,
+				colors: ['#e7c012', '#8b81e2'],
+			};
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.PieChart(document.getElementById('chart'));
+			chart.draw(data, options);
+
+			console.log(data.cache[0][1]);
+
+
+			document.getElementById("slider1").oninput = function () {
+				this.style.background = 'linear-gradient(to right, #e7c012 0%, #e7c012 ' + this.value * 10 + '%, #fff ' +
+					this
+					.value * 10 + '%, white 100%)';
+
+				document.getElementById("slider1_value").textContent = this.value;
+				data.removeRow(0);
+				data.insertRows(0, [
+					['Mushrooms', parseInt(this.value)]
+				]);
+				chart.draw(data, options);
+			};
+
+			document.getElementById("slider2").oninput = function () {
+				this.style.background = 'linear-gradient(to right, #e7c012 0%, #e7c012 ' + this.value * 10 + '%, #fff ' +
+					this
+					.value * 10 + '%, white 100%)';
+
+				document.getElementById("slider2_value").textContent = this.value;
+				data.removeRow(1);
+				data.insertRows(1, [
+					['Onions-pieces', parseInt(this.value)]
+				]);
+				chart.draw(data, options);
+			};
+
+		}
+	</script>
+</head>
+<style>
+	.main {
+		margin-top: 20%;
+		text-align: center;
+		
+	}
+
+	.container {
+		display: inline-flex;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #c8c8c8;
+
+	}
+
+	.s1 {
+		padding-bottom: 30px;
+		border-bottom: 1px solid #c8c8c8;
+	}
+
+	.slider {
+		padding: 1px;
+		border-right: 1px solid #c8c8c8;
+	}
+
+	.slider h3 {
+		margin-left: 10%;
+		text-align: left;
+		font-family: Arial;
+		font-weight: 200;
+	}
+	.slider h4 {
+		margin-left: 60%;
+		margin-right: 10%;
+		text-align: center;
+		background-color: #f3f3f3;
+		border: 1px solid #c8c8c8;
+		border-radius: 30px;
+	}
+
+	.slider input {
+		background: linear-gradient(to right, #e7c012 0%, #e7c012 50%, #fff 50%, #fff 100%);
+		border: solid 1px #f3f3f3;
+		border-radius: 8px;
+		height: 7px;
+		width: 356px;
+		outline: none;
+		transition: background 450ms ease-in;
+		-webkit-appearance: none;
+	}
+
+	.slider input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		background: #8b81e2;
+		cursor: pointer;
+	}
+
+	.pie {}
+</style>
+
+<body>
+	<div class="main">
+		<div class="container">
+			<div class="slider">
+
+				<div class="s1">
+					<div class="output">
+						<h3>
+							Number of Mushrooms
+						</h3>
+						<h4 id="slider1_value">
+							5
+						</h4>
+					</div>
+					<input id="slider1" type="range" min="0" max="10" value="5" class="slider">
+				</div>
+				<div class="s2">
+					<div class="output">
+						<h3>
+							Number of Onions
+						</h3>
+						<h4 id="slider2_value">
+							5
+						</h4>
+					</div>
+					<input id="slider2" type="range" min="0" max="10" value="5" class="slider">
+				</div>
+			</div>
+			<div class="pie">
+				<div id="chart">
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script>
+
+	</script>
+</body>
+
+</html>
